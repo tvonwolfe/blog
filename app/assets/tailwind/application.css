@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+@theme {
+  --default-font-family: 'Inria Serif';
+}
+
+.blog-post {
+  @apply text-xl md:text-lg;
+  @apply leading-8;
+
+  * {
+    @apply mb-6;
+  }
+
+  *::selection {
+    @apply bg-indigo-100;
+  }
+
+  pre {
+    @apply p-4 rounded;
+    @apply text-base;
+  }
+
+  a {
+    @apply underline underline-offset-4 hover:decoration-dotted;
+  }
+
+  img {
+    @apply my-4 rounded-sm;
+  }
+}
+
+nav.pagy {
+  @apply flex justify-between mt-4;
+
+  a {
+    @apply px-3 py-1;
+
+  }
+
+  .current {
+    @apply text-slate-200 bg-slate-500;
+    @apply rounded-sm;
+  }
+
+  :not(.current) & :not([aria-disabled="true"]) {
+    @apply hover:bg-slate-300 dark:hover:bg-slate-600;
+    @apply rounded-sm;
+  }
+
+  :last-of-type {
+    @apply mr-0;
+  }
+}
