@@ -14,8 +14,23 @@
     @apply mb-6;
   }
 
-  *::selection {
-    @apply bg-indigo-100;
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply text-slate-700 dark:text-amber-50 font-bold mb-2;
+  }
+
+  h1 {
+    @apply text-4xl;
+  }
+
+  h2 {
+    @apply text-3xl;
+  }
+
+  h3 {
+    @apply text-2xl;
   }
 
   pre {

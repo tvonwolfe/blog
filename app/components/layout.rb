@@ -66,7 +66,7 @@ module Components
           end
         end
 
-        body class: "bg-stone-100 dark:bg-slate-800 text-stone-800 dark:text-slate-100 w-auto md:max-w-[40rem] mx-auto min-h-screen flex flex-col" do
+        body class: "bg-stone-100 dark:bg-slate-800 text-stone-800 dark:text-amber-50 w-auto md:max-w-[40rem] mx-auto min-h-screen flex flex-col" do
           header id: "header", class: "px-4 py-4 sm:px-6" do
             h1 class: "font-mono text-[2em] sm:text-[4em] text-slate-700 dark:text-amber-50 font-extrabold" do
               a href: root_path do
