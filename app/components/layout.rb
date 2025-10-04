@@ -7,7 +7,6 @@ module Components
     include Phlex::Rails::Helpers::StyleSheetLinkTag
     include Phlex::Rails::Helpers::JavaScriptImportmapTags
     include Phlex::Rails::Helpers::AutoDiscoveryLinkTag
-    include Phlex::Rails::Helpers::ImagePath
 
     def initialize(title: "tvonwolfe")
       @title = title
@@ -66,33 +65,33 @@ module Components
           end
         end
 
-        body class: "bg-stone-100 dark:bg-slate-800 text-stone-800 dark:text-amber-50 w-auto md:max-w-[40rem] mx-auto min-h-screen flex flex-col" do
-          header id: "header", class: "px-4 py-4 sm:px-6" do
-            h1 class: "font-mono text-[2em] sm:text-[4em] text-slate-700 dark:text-amber-50 font-extrabold" do
-              a href: root_path do
-                plain "tvonwolfe"
+        body class: "p-4 md:p-8 min-h-full flex flex-col" do
+          div class: "flex flex-col lg:grid lg:grid-cols-[25%_50%_25%] grow" do
+            header id: "header", class: "pt-2 pb-6 md:pt-0" do
+              h1 class: "font-mono text-4xl font-bold" do
+                a href: root_path do
+                  plain "tvonwolfe"
+                end
               end
             end
+            main class: "lg:max-w-[45rem] lg:mx-auto" do
+              yield
+            end
           end
-          main class: "mx-auto px-4 sm:px-6 grow w-full" do
-            yield
-          end
-          footer id: "footer", class: "mt-2 px-4 py-4 sm:px-6" do
-            div class: "flex w-full justify-between" do
-              div id: "copyright", class: "flex flex-row self-center text-slate-500" do
-                p do
-                  raw safe "&copy;"
-                  plain " "
-                  raw safe Date.current.year.to_s
-                  plain " "
-                  plain "Tony Von Wolfe"
-                end
+          footer class: "pt-4 sm:pt-0 flex w-full justify-between" do
+            div id: "copyright", class: "flex flex-row self-center text-slate-500" do
+              p do
+                raw safe "&copy;"
+                plain " "
+                raw safe Date.current.year.to_s
+                plain " "
+                plain "Tony Von Wolfe"
               end
+            end
 
-              div class: "self-center" do
-                a href: feed_url, data: { turbo: "false" } do
-                  img src: "/rss.svg", height: "24px", width: "24px", alt: "rss feed"
-                end
+            div class: "self-center" do
+              a href: feed_url, data: { turbo: "false" } do
+                img src: "/rss.svg", height: "24px", width: "24px", alt: "rss feed"
               end
             end
           end
