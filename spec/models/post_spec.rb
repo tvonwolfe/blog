@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Post do
+RSpec.describe Post, type: :model do
   subject(:post) { build(:post) }
 
   describe "validations" do

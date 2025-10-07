@@ -1,7 +1,11 @@
+# frozen_string_literal: true
+
 module Views
   module Posts
     class Show < Base
       attr_reader :post
+
+      DATE_FORMAT = "%B %d, %Y"
 
       def initialize(post:)
         @post = post
@@ -9,22 +13,39 @@ module Views
 
       def view_template
         render Components::Layout.new(title: post.title) do
-          div class: "my-6" do
-            h1 class: "text-5xl font-extrabold mb-2 text-slate-700 dark:text-amber-50" do
-              post.title
-            end
-            p class: "text-slate-500 dark:text-slate-300 text-sm font-sans" do
-              if post.published?
-                "Published on #{post.published_at&.to_date}"
-              else
-                "Not published"
-              end
-            end
-          end
+          post_title
           article class: "blog-post" do
-            raw safe post.html_content
+            post_content
           end
-          render Components::Posts::Tags.new(post)
+        end
+      end
+
+      private
+
+      def post_content
+        raw safe Commonmarker.to_html(post.content)
+      end
+
+      def post_title
+        div class: "pb-8" do
+          h1 class: "text-5xl font-extrabold" do
+            post.title
+          end
+          div class: "pt-4 text-slate-500 dark:text-slate-400 text-sm font-sans flex gap-2 items-center" do
+            if post.published?
+              published_date
+            else
+              "Not published"
+            end
+            hr class: "flex-1 h-1 text-slate-300 dark:text-slate-600"
+            render Components::Posts::Tags.new(post)
+          end
+        end
+      end
+
+      def published_date
+        time datetime: post.published_at&.to_date do
+          post.published_at&.strftime(DATE_FORMAT)
         end
       end
     end

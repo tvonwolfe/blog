@@ -10,7 +10,7 @@ module Components
       def view_template
         div id: "post-tags" do
           tags.pluck(:value).each do |tag|
-            span class: "font-semibold text-slate-400 pr-2 py-1 hover:text-slate-600 dark:hover:text-slate-200 whitespace-nowrap" do
+            span class: "text-slate-400 pr-2 last-of-type:pr-0 hover:text-slate-600 dark:hover:text-slate-200 whitespace-nowrap" do
               a href: posts_path(tag:) do
                 "##{tag}"
               end

@@ -13,6 +13,4 @@ class Post < ApplicationRecord
   scope :display_order, -> { order(published_at: :desc) }
 
   def to_param = title&.parameterize
-
-  def html_content = Commonmarker.to_html(content)
 end
