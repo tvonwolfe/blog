@@ -23,7 +23,7 @@ module Views
       private
 
       def post_content
-        raw safe Commonmarker.to_html(post.content)
+        raw safe post.html_content
       end
 
       def post_title

@@ -24,6 +24,17 @@ RSpec.describe Post, type: :model do
     end
   end
 
+  describe "#html_content" do
+    before do
+      allow(Commonmarker).to receive(:to_html).with(post.content).and_call_original
+    end
+
+    it "calls Commonmarker to convert markdown content into HTML" do
+      post.html_content
+      expect(Commonmarker).to have_received(:to_html).with(post.content)
+    end
+  end
+
   describe "Publishable" do
     describe "#publish!" do
       context "when the post has not been published yet" do

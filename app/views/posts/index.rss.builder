@@ -13,7 +13,7 @@ xml.rss version: "2.0" do
   xml.channel do
     xml.title "tvonwolfe"
     xml.link root_url
-    xml.description "A silly little blog"
+    xml.description "A blog by some guy on the Internet"
     xml.lastBuildDate @posts.first.published_at.to_fs(:rfc822) if @posts.first.present?
 
     @posts.each do |post|
