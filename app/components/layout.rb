@@ -34,35 +34,6 @@ module Components
           stylesheet_link_tag :app, data: { turbo_track: "reload" }
           javascript_importmap_tags
           auto_discovery_link_tag :rss, feed_path
-
-          script do
-            raw safe <<-JS
-              const THEME_OPTIONS = {
-                light: "light",
-                dark: "dark",
-              };
-
-              const setTheme = (theme) => {
-                document.documentElement.dataset.theme = theme;
-                localStorage.theme = theme
-              };
-
-              // set up listener to auto-toggle on system theme change
-              const colorSchemeMediaQuery = window.matchMedia("(prefers-color-scheme: dark)")
-              colorSchemeMediaQuery.addEventListener("change", (e) => {
-                const theme = (e.matches) ? THEME_OPTIONS.dark : THEME_OPTIONS.light;
-                setTheme(theme);
-              })
-
-              // set theme on page load. if we have a theme stored already, use that.
-              // otherwise, use the detected the browser/system setting.
-              const shouldUseDarkTheme = localStorage.theme === "dark" ||
-                (!("theme" in localStorage) && colorSchemeMediaQuery.matches);
-
-              const theme = shouldUseDarkTheme ? THEME_OPTIONS.dark : THEME_OPTIONS.light;
-              setTheme(theme);
-            JS
-          end
         end
 
         body class: "p-4 md:p-8 min-h-full flex flex-col" do
@@ -74,7 +45,7 @@ module Components
                 end
               end
             end
-            main class: "lg:max-w-[45rem] lg:mx-auto" do
+            main class: "lg:max-w-[42rem] lg:mx-auto" do
               yield
             end
           end
@@ -96,6 +67,39 @@ module Components
             end
           end
         end
+      end
+    end
+
+    private
+
+    def theme_toggle_script
+      script do
+        raw safe <<-JS
+        const THEME_OPTIONS = {
+          light: "light",
+          dark: "dark",
+        };
+
+        const setTheme = (theme) => {
+          document.documentElement.dataset.theme = theme;
+          localStorage.theme = theme
+        };
+
+        // set up listener to auto-toggle on system theme change
+        const colorSchemeMediaQuery = window.matchMedia("(prefers-color-scheme: dark)")
+        colorSchemeMediaQuery.addEventListener("change", (e) => {
+          const theme = (e.matches) ? THEME_OPTIONS.dark : THEME_OPTIONS.light;
+          setTheme(theme);
+        })
+
+        // set theme on page load. if we have a theme stored already, use that.
+          // otherwise, use the detected the browser/system setting.
+          const shouldUseDarkTheme = localStorage.theme === "dark" ||
+          (!("theme" in localStorage) && colorSchemeMediaQuery.matches);
+
+        const theme = shouldUseDarkTheme ? THEME_OPTIONS.dark : THEME_OPTIONS.light;
+        setTheme(theme);
+        JS
       end
     end
   end
