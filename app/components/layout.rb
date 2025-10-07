@@ -45,7 +45,7 @@ module Components
                 end
               end
             end
-            main class: "lg:max-w-[42rem] lg:mx-auto" do
+            main class: "md:max-w-[42rem] md:mx-auto" do
               yield
             end
           end
