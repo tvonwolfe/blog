@@ -15,6 +15,6 @@ class Post < ApplicationRecord
   def to_param = title&.parameterize
 
   def html_content
-    Commonmarker.to_html(content)
+    Commonmarker.to_html(content, **Rails.application.config.commonmarker)
   end
 end

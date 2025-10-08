@@ -11,7 +11,7 @@ html {
 
   @apply text-slate-700 dark:text-[#d1e0fc];
   @apply bg-slate-200 dark:bg-[#141c2b];
-  @apply h-full;
+  @apply min-h-full;
 }
 
 .blog-post {
@@ -20,6 +20,12 @@ html {
 
   * {
     @apply mb-6;
+  }
+
+  sup a {
+    @apply p-[2px] hover:decoration-solid underline-offset-2;
+    width: 0.75rem;
+    height: 0.75rem;
   }
 
   h1,
@@ -53,6 +59,7 @@ html {
   img {
     @apply my-4 rounded-sm;
   }
+
 }
 
 nav.pagy {
@@ -75,5 +82,14 @@ nav.pagy {
 
   :last-of-type {
     @apply mr-0;
+  }
+}
+
+.footnotes {
+  @apply border-t pt-8 mt-8 border-slate-300 dark:border-slate-600;
+  @apply text-base text-slate-600 dark:text-slate-400;
+
+  ol {
+    @apply pl-5 list-decimal;
   }
 }

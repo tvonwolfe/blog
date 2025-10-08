@@ -4,15 +4,17 @@ module Views
       include Pagy::Frontend
       include Phlex::Rails::Helpers::Request
 
-      attr_reader :posts, :paginator
+      attr_reader :posts, :paginator, :params
 
-      def initialize(posts:, paginator:)
+      def initialize(posts:, paginator:, params:)
         @posts = posts
         @paginator = paginator
+        @params = params
       end
 
       def view_template
         render Components::Layout do
+          tag_filter
           div id: do
             posts.each { |post| post_link(post) }
           end
@@ -23,6 +25,20 @@ module Views
       def id = "posts-list"
 
       private
+
+      def tag_filter
+        return unless tags.present?
+
+        h2 class: "text-3xl font-bold mb-8 border-b border-slate-400 dark:border-slate-600 pb-2" do
+          plain "Posts tagged #{tags.join(", ")}"
+        end
+      end
+
+      def tags
+        return unless params.key? :tag
+
+        params[:tag].map { |tag_str| "##{tag_str}" }
+      end
 
       def post_link(post)
         div class: "mb-2" do

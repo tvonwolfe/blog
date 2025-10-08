@@ -1,0 +1,13 @@
+default: &default
+  options:
+    extension:
+      footnotes: true
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default

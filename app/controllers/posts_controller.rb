@@ -8,7 +8,7 @@ class PostsController < ApplicationController
 
   def index
     respond_to do |format|
-      format.html { render Views::Posts::Index.new(posts:, paginator:) }
+      format.html { render Views::Posts::Index.new(posts:, paginator:, params: index_params) }
       format.rss
     end
   end
