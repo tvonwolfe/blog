@@ -36,7 +36,7 @@ module Components
           auto_discovery_link_tag :rss, feed_path
         end
 
-        body class: "p-4 md:p-8 min-h-full flex flex-col" do
+        body class: "p-4 md:p-8 min-h-screen flex flex-col justify-between" do
           div class: "flex flex-col lg:grid lg:grid-cols-[25%_50%_25%] grow" do
             header id: "header", class: "pt-2 pb-6 md:pt-0" do
               h1 class: "font-mono text-4xl font-bold" do
