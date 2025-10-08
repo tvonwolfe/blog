@@ -38,5 +38,7 @@ module Blog
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    config.commonmarker = config_for(:commonmarker)
   end
 end
