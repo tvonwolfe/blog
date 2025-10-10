@@ -9,13 +9,14 @@
 
 html {
 
-  @apply text-slate-700 dark:text-[#d1e0fc];
+  @apply text-slate-700 dark:text-slate-200;
   @apply bg-slate-200 dark:bg-[#141c2b];
   @apply min-h-full;
 }
 
 .blog-post {
-  @apply text-lg;
+  @apply text-slate-800 dark:text-slate-200;
+  @apply text-lg sm:text-xl;
   @apply leading-8;
 
   * {
