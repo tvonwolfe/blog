@@ -19,9 +19,6 @@ module Components
         head do
           title { @title }
 
-          link rel: "preconect", href: "https://fonts.googleapis.com"
-          link rel: "preconect", href: "https://fonts.gstatic.com", crossorigin: true
-          link href: "https://fonts.googleapis.com/css2?family=Inria+Serif&display=swap", rel: "stylesheet"
           link rel: "icon", type: "image/x-icon", href: "/favicon.png"
 
           meta name: "viewport", content: "width=device-width,initial-scale=1"
