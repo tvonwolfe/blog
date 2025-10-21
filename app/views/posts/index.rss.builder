@@ -2,7 +2,9 @@
 
 #
 def rss_description(post)
-  match_data = post.html_content.match(%r{<p>(.*)</p>})
+  post_renderable = Views::Posts::Show.new(post:)
+
+  match_data = post_renderable.post_html_content.match(%r{<p>(.*)</p>})
   return unless match_data
 
   match_data[1]

@@ -4,6 +4,8 @@ class PostsController < ApplicationController
   before_action :set_posts, only: :index
   before_action :set_post, only: :show
 
+  before_action :enable_http_caching, only: :show
+
   rescue_from Pagy::OverflowError, with: -> { redirect_to :root }
 
   def index
@@ -14,7 +16,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    render Views::Posts::Show.new(post:) if Rails.env.development? || stale?(post)
+    render Views::Posts::Show.new(post:) if !Rails.env.production? || stale?(post)
   end
 
   private
