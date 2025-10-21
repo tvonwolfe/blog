@@ -14,6 +14,19 @@ html {
   @apply min-h-full;
 }
 
+ol,
+ul {
+  @apply pl-6
+}
+
+ol {
+  @apply list-decimal;
+}
+
+ul {
+  @apply list-disc;
+}
+
 .blog-post {
   @apply text-slate-800 dark:text-slate-200;
   @apply text-lg sm:text-xl;
@@ -21,6 +34,10 @@ html {
 
   * {
     @apply mb-6;
+  }
+
+  li {
+    @apply mb-2;
   }
 
   sup a {
@@ -52,6 +69,7 @@ html {
   pre {
     @apply p-4 rounded;
     @apply text-base;
+    @apply overflow-x-scroll;
   }
 
   a {
@@ -90,8 +108,4 @@ nav.pagy {
 .footnotes {
   @apply border-t pt-8 mt-8 border-slate-300 dark:border-slate-600;
   @apply text-base text-slate-600 dark:text-slate-400;
-
-  ol {
-    @apply pl-5 list-decimal;
-  }
 }
