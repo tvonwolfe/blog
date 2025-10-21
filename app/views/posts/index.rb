@@ -42,7 +42,7 @@ module Views
 
       def post_link(post)
         div class: "mb-2" do
-          h1 class: "text-3xl font-bold" do
+          h1 class: "text-2xl font-semibold" do
             a href: post_path(post), class: "hover:underline underline-offset-4" do
               post.title
             end
