@@ -15,16 +15,18 @@ module Views
         render Components::Layout.new(title: post.title) do
           post_title
           article class: "blog-post" do
-            post_content
+            raw safe post_html_content
           end
         end
       end
 
-      private
-
-      def post_content
-        raw safe post.html_content
+      def post_html_content
+        Rails.cache.fetch("#{post.cache_key_with_version}-rendered-md") do
+          Commonmarker.to_html(post.content, **Rails.application.config.commonmarker)
+        end
       end
+
+      private
 
       def post_title
         div class: "pb-8" do
