@@ -1,15 +1,5 @@
 # frozen_string_literal: true
 
-#
-def rss_description(post)
-  post_renderable = Views::Posts::Show.new(post:)
-
-  match_data = post_renderable.post_html_content.match(%r{<p>(.*)</p>})
-  return unless match_data
-
-  match_data[1]
-end
-
 xml.instruct! :xml, version: "1.0"
 xml.rss version: "2.0" do
   xml.channel do
@@ -24,7 +14,7 @@ xml.rss version: "2.0" do
         xml.link post_url(post)
         xml.guid post_url(post)
         xml.pubDate post.published_at.to_fs(:rfc822)
-        xml.description rss_description(post)
+        xml.content Views::Posts::Show.new(post:).post_html_content
       end
     end
   end
