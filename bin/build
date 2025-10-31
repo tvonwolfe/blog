@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby
+
+require 'optparse'
+
+def parse_options
+  options = {}
+  option_parser = OptionParser.new
+
+  option_parser.banner = 'Usage: build [options]'
+
+  option_parser.on('-a', '--arch=<target architecture>',
+                   "CPU architecture to target with Podman build. Defaults to the current system's architecture.") do |arch|
+    options[:arch] = arch
+  end
+  option_parser.on('-t', '--tag=<image build tag>', 'Optional tag to use on the output build image.') do |tag|
+    options[:tag] = tag
+  end
+
+  option_parser.parse!(ARGV) {}
+
+  options[:arch] ||= `arch`.strip # assumes the `arch` command is present on the build system
+  options[:tag] ||= "blogman:#{options[:arch]}-latest"
+
+  options
+end
+
+opts = parse_options
+
+puts "Building container image with the following options: #{opts}"
+system "podman build . --arch=#{opts[:arch]} -t #{opts[:tag]}"
