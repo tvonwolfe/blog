@@ -14,7 +14,7 @@ xml.rss version: "2.0" do
         xml.link post_url(post)
         xml.guid post_url(post)
         xml.pubDate post.published_at.to_fs(:rfc822)
-        xml.content Views::Posts::Show.new(post:).post_html_content
+        xml.tag! "content:encoded", Views::Posts::Show.new(post:).post_html_content
       end
     end
   end
