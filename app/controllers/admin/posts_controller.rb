@@ -1,12 +1,34 @@
 module Admin
   class PostsController < ApplicationController
-    def create
-      post = Post.new(create_params)
+    before_action :set_post, except: %i[create index new]
+    before_action :set_posts, only: :index
 
-      if post.save
-        redirect_to post
+    def index
+      render Views::Admin::Posts::Index.new(posts:)
+    end
+
+    def create
+      post = PostCreator.new(post_params).create_post
+
+      if post.persisted?
+        redirect_to post_path(post)
       else
-        render Views::Admin::Posts::New
+        render Views::Admin::Posts::New.new(post:), status: :unprocessable_entity
+      end
+    end
+
+    def edit
+      render Views::Admin::Posts::Edit.new(post:)
+    end
+
+    def update
+      post_updater = PostUpdater.new(post)
+      updated_post = post_updater.update(post_params)
+
+      if updated_post.errors.none?
+        redirect_to admin_posts_path
+      else
+        render Views::Admin::Posts::Edit.new(post: updated_post), status: :unprocessable_entity
       end
     end
 
@@ -16,12 +38,24 @@ module Admin
 
     private
 
-    def create_params
-      params.require(:post).permit(
-        :title,
-        :content
+    attr_reader :post, :posts
 
-      )
+    def set_post
+      @post = Post.find_by!(handle: params[:handle])
+    end
+
+    def set_posts
+      @posts = Post.all
+    end
+
+    def post_params
+      @post_params ||= params.require(:post).permit(
+        :title,
+        :content,
+        :tags
+      ).tap do |post_params|
+        post_params[:tags] = Array(post_params.extract_value(:tags, delimiter: ",")).map(&:strip)
+      end
     end
   end
 end

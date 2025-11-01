@@ -1,12 +1,25 @@
   module Views
     module Admin
       module Posts
-        class New < ::Views::Base
-          include Phlex::Rails::Helpers::RichTextArea
+        class New < Base
+          attr_reader :post
+
+          def initialize(post: nil)
+            @post = post || Post.new
+          end
 
           def view_template
-            render Components::Layout.new(title: "New Post") do
-              render Components::Posts::Form
+            render Components::Admin::Layout.new(title: "New Post") do
+              a href: admin_posts_path, class: "text-slate-600 hover:underline" do
+                "← All Posts"
+              end
+              h1 class: "text-3xl font-bold my-2" do
+                "New Post"
+              end
+
+              render Components::Errors.new(post.errors) if post.errors.any?
+
+              render Components::Admin::Posts::Form.new(post:)
             end
           end
         end
