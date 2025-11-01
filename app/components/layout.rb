@@ -33,7 +33,7 @@ module Components
           auto_discovery_link_tag :rss, feed_path
         end
 
-        body class: "p-4 md:p-8 min-h-screen flex flex-col justify-between" do
+        body class: "text-slate-700 dark:text-slate-200 bg-slate-200 dark:bg-[#141c2b] min-h-full p-4 md:p-8 min-h-screen flex flex-col justify-between" do
           div class: "flex flex-col lg:grid lg:grid-cols-[25%_50%_25%] grow" do
             header id: "header", class: "pt-2 pb-6 md:pt-0" do
               h1 class: "font-mono text-4xl font-bold" do
@@ -42,7 +42,7 @@ module Components
                 end
               end
             end
-            main class: "md:max-w-[42rem] md:mx-auto" do
+            main class: "md:w-2xl md:mx-auto" do
               yield
             end
           end
