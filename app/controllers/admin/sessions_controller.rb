@@ -5,7 +5,7 @@ module Admin
     def create
       if Rack::Utils.secure_compare(password_param_digest, password_digest)
         set_authorization_cookie!
-        redirect_to admin_dashboard_path
+        redirect_to admin_posts_path
       else
         render Views::Admin::Sessions::New, status: :bad_request
       end
