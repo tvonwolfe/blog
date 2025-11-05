@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_action :set_posts, only: :index
   before_action :set_post, only: :show
 
-  before_action :set_http_caching, only: :show
+  before_action :enable_http_caching, only: :show
 
   rescue_from Pagy::OverflowError, with: -> { redirect_to :root }
 
