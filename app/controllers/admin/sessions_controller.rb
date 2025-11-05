@@ -1,6 +1,10 @@
 module Admin
   class SessionsController < ApplicationController
     skip_before_action :verify_admin_session
+    skip_before_action :skip_session_cookie
+    skip_before_action :enable_http_caching
+
+    before_action :redirect_if_logged_in, only: :new
 
     def create
       if Rack::Utils.secure_compare(password_param_digest, password_digest)
@@ -21,6 +25,10 @@ module Admin
     end
 
     private
+
+    def redirect_if_logged_in
+      redirect_to admin_posts_path if admin?
+    end
 
     def password_digest
       Digest::SHA256.hexdigest(Rails.application.credentials.admin_password)

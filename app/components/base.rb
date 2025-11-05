@@ -4,12 +4,14 @@ module Components
   class Base < Phlex::HTML
     # Include any helpers you want to be available across all components
     include Phlex::Rails::Helpers::Routes
+    include Callbacks
 
-    if Rails.env.development?
-      def before_template
-        comment { "Before #{self.class.name}" }
-        super
-      end
+    before_template :add_component_comment
+
+    def add_component_comment
+      return unless Rails.env.development?
+
+      comment { "Before #{self.class.name}" }
     end
   end
 end

@@ -8,8 +8,11 @@ module Components
     include Phlex::Rails::Helpers::JavaScriptImportmapTags
     include Phlex::Rails::Helpers::AutoDiscoveryLinkTag
 
-    def initialize(title: "tvonwolfe")
+    attr_reader :meta_tags
+
+    def initialize(title: "tvonwolfe", meta_tags: nil)
       @title = title
+      @meta_tags = meta_tags || MetaTags.new
     end
 
     def view_template
@@ -24,6 +27,7 @@ module Components
           meta name: "viewport", content: "width=device-width,initial-scale=1"
           meta name: "apple-mobile-web-app-capable", content: "yes"
           meta name: "mobile-web-app-capable", content: "yes"
+          meta charset: "utf-8"
 
           csrf_meta_tags
           csp_meta_tag
@@ -31,6 +35,8 @@ module Components
           stylesheet_link_tag :app, data: { turbo_track: "reload" }
           javascript_importmap_tags
           auto_discovery_link_tag :rss, feed_path
+
+          render meta_tags
         end
 
         body class: "text-slate-700 dark:text-slate-200 bg-slate-200 dark:bg-[#141c2b] min-h-full p-4 md:p-8 min-h-screen flex flex-col justify-between" do
