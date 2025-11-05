@@ -3,16 +3,20 @@
 module Views
   module Posts
     class Show < Base
-      attr_reader :post
+      attr_reader :post, :meta_tags
 
       DATE_FORMAT = "%B %d, %Y"
 
+      before_template :set_metadata
+
       def initialize(post:)
         @post = post
+        @meta_tags = Components::MetaTags.new
       end
 
+
       def view_template
-        render Components::Layout.new(title: post.title) do
+        render Components::Layout.new(title: post.title, meta_tags: meta_tags) do
           post_title
           article class: "blog-post" do
             raw safe post_html_content
@@ -27,6 +31,12 @@ module Views
       end
 
       private
+
+      def set_metadata
+        meta_tags.add property: "og:title", content: post.title
+        meta_tags.add property: "og:type", content: "article"
+        meta_tags.add property: "og:url", content: post_url(post)
+      end
 
       def post_title
         div class: "pb-8" do
