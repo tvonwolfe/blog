@@ -1,0 +1,53 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "Dangerous Eval",
+      "warning_code": 13,
+      "fingerprint": "3f560b3f07e9494815696590ece8712f48652855d188e7fed26ea39838c0daf4",
+      "check_name": "Evaluation",
+      "message": "Dynamic string evaluated as code",
+      "file": "app/components/callbacks.rb",
+      "line": 15,
+      "link": "https://brakemanscanner.org/docs/warning_types/dangerous_eval/",
+      "code": "class_eval(\"def self.#{callback_type}_template(*new_actions)\\n  current_value = public_send(:#{class_attribute_name})\\n  setter_method = :#{class_attribute_name}=\\n\\n  # equivalent to `self.*_template_actions += new_actions`\\n  public_send(setter_method, current_value + new_actions)\\nend\\n\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Components::Callbacks",
+        "method": null
+      },
+      "user_input": null,
+      "confidence": "Weak",
+      "cwe_id": [
+        913,
+        95
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Dangerous Eval",
+      "warning_code": 13,
+      "fingerprint": "7e8c486fc8359e0bcac41d7336d668c440cb448e827ea42a0e03d087a78bbade",
+      "check_name": "Evaluation",
+      "message": "Dynamic string evaluated as code",
+      "file": "app/components/callbacks.rb",
+      "line": 15,
+      "link": "https://brakemanscanner.org/docs/warning_types/dangerous_eval/",
+      "code": "class_eval(\"def self.#{callback_type}_template(*new_actions)\\n  current_value = public_send(:#{class_attribute_name})\\n  setter_method = :#{class_attribute_name}=\\n\\n  # equivalent to `self.*_template_actions += new_actions`\\n  public_send(setter_method, current_value + new_actions)\\nend\\n\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Components",
+        "method": null
+      },
+      "user_input": null,
+      "confidence": "Weak",
+      "cwe_id": [
+        913,
+        95
+      ],
+      "note": ""
+    }
+  ],
+  "brakeman_version": "7.1.1"
+}
