@@ -74,6 +74,7 @@ module Components
     end
 
     private
+
     def theme_toggle_script
       script do
         raw safe <<-JS
