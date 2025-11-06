@@ -19,7 +19,7 @@ def parse_options
   option_parser.parse!(ARGV) {}
 
   options[:arch] ||= `arch`.strip # assumes the `arch` command is present on the build system
-  options[:tag] ||= "blogman:#{options[:arch]}-latest"
+  options[:tag] ||= "blog:#{options[:arch]}-latest"
 
   options
 end
