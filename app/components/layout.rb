@@ -29,6 +29,9 @@ module Components
           meta name: "mobile-web-app-capable", content: "yes"
           meta charset: "utf-8"
 
+          link href: "https://github.com/tvonwolfe", rel: "me"
+          link href: "https://bsky.app/profile/tvonwolfe.com", rel: "me"
+
           csrf_meta_tags
           csp_meta_tag
 
