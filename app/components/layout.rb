@@ -51,7 +51,7 @@ module Components
                 end
               end
             end
-            main class: "md:w-2xl md:mx-auto" do
+            main class: "md:max-w-2xl md:mx-auto" do
               yield
             end
           end
