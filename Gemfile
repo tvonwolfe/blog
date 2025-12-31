@@ -41,3 +41,5 @@ group :development do
   gem "ruby-lsp-rspec", require: false
   gem "web-console"
 end
+
+gem "marksmith", "~> 0.4.7"

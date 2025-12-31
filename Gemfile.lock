@@ -162,6 +162,8 @@ GEM
       net-pop
       net-smtp
     marcel (1.1.0)
+    marksmith (0.4.7)
+      activesupport
     matrix (0.4.3)
     mini_magick (5.3.1)
       logger
@@ -410,6 +412,7 @@ DEPENDENCIES
   image_processing (~> 1.2)
   importmap-rails
   jwt
+  marksmith (~> 0.4.7)
   nokogiri
   pagy (~> 9.4.0)
   pg (~> 1.1)

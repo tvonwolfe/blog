@@ -17,7 +17,8 @@ WORKDIR /rails
 
 # Install base packages
 RUN apt-get update -qq
-RUN apt-get install --no-install-recommends -y curl libjemalloc2 libpq-dev build-essential pkg-config libyaml-dev
+RUN apt-get install --no-install-recommends -y curl libjemalloc2 libpq-dev \
+            build-essential pkg-config libyaml-dev libvips libjpeg-turbo-dev
 
 # Install application gems
 RUN bundle config set --local without 'development test'
