@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Components
   module Admin
     module Posts
@@ -12,6 +14,8 @@ module Components
 
         def view_template
           div class: "w-full" do
+            render errors
+
             form action: form_action, method: form_method, class: "w-full" do
               form_authenticity_token
               input_with_label label: "Title", id: :title, value: post.title
@@ -33,6 +37,8 @@ module Components
         end
 
         private
+
+        def errors = Components::ErrorList.new(post.errors)
 
         def input_with_label(**params)
           label_name = params[:label]

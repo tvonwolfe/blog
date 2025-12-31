@@ -1,8 +1,13 @@
+# frozen_string_literal: true
+
 module Admin
   class PostsController < ApplicationController
     before_action :set_post, except: %i[create index new]
     before_action :set_posts, only: :index
 
+    rescue_from ActiveRecord::RecordNotFound, with: -> { redirect_to admin_posts_path }
+
+    # TODO: pagy
     def index
       render Views::Admin::Posts::Index.new(posts:)
     end

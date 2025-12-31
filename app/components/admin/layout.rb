@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Components
   module Admin
     class Layout < Base
@@ -31,7 +33,7 @@ module Components
 
           body class: "min-h-screen" do
             render Components::Admin::Header if header?
-            main class: "max-w-2xl mx-auto py-6 px-4" do
+            main class: "w-2xl mx-auto py-6 px-4" do
               yield
             end
           end

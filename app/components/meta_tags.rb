@@ -2,12 +2,12 @@ module Components
   class MetaTags < Base
     attr_reader :data
 
-    def initialize
-      @data = []
+    def initialize(data = [])
+      @data = data
     end
 
     def add(**args)
-      data << args
+      data << args unless args.blank?
     end
 
     def view_template

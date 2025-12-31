@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Views
   module Posts
     class Index < Base
@@ -43,7 +45,7 @@ module Views
       def post_link(post)
         div class: "mb-2" do
           h1 class: "text-2xl font-semibold" do
-            a href: post_path(post), class: "hover:underline underline-offset-4" do
+            a href: post_path(handle: post.handle), class: "hover:underline underline-offset-4" do
               post.title
             end
           end

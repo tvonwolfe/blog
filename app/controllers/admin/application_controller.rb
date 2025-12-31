@@ -1,10 +1,10 @@
 module Admin
   class ApplicationController < ::ApplicationController
-    before_action :verify_admin_session
+    before_action :authorize_admin_session
 
     private
 
-    def verify_admin_session
+    def authorize_admin_session
       return if admin?
 
       redirect_to :root
