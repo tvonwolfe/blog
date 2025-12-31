@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :post, class: "Post" do
+  factory :post do
     title { Faker::Lorem.sentence }
     published_at { nil }
     content { Faker::Lorem.paragraphs(number: 3).join("\n\n") }

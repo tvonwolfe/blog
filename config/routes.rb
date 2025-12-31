@@ -19,5 +19,6 @@ Rails.application.routes.draw do
   root "posts#index"
   get  :feed, to: "posts#index", defaults: { format: :xml }
 
-  match "*path" => "posts#index", via: %i[get post put patch delete]
+  # redirect all unrecognized paths to the root path.
+  match "*path" => "posts#index", via: %i[get post put patch delete], to: redirect("/")
 end

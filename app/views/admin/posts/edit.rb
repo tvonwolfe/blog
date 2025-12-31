@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Views
   module Admin
     module Posts
@@ -9,7 +11,7 @@ module Views
         end
 
         def view_template
-          render Components::Admin::Layout do
+          render Components::Admin::Layout.new(title: "Edit Post") do
             a href: admin_posts_path, class: "text-slate-600 hover:underline" do
               "← All Posts"
             end

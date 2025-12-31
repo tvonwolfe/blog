@@ -12,7 +12,7 @@ module Components
 
         class_attribute class_attribute_name, instance_predicate: false, default: []
 
-        class_eval <<~RUBY
+        class_eval <<~RUBY, __FILE__, __LINE__ + 1
           def self.#{callback_type}_template(*new_actions)
             current_value = public_send(:#{class_attribute_name})
             setter_method = :#{class_attribute_name}=

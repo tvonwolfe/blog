@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PostCreator
   attr_reader :params
 
@@ -7,8 +9,8 @@ class PostCreator
   end
 
   def create_post
-    post = Post.new(params.except(:tags))
-    post.tags ||= tags
+    post = Post.new(post_params)
+    post.tags = tags if tags.present?
 
     post.transaction do
       post.save
@@ -19,6 +21,8 @@ class PostCreator
   end
 
   private
+
+  def post_params = params.except(:tags)
 
   def tags
     return if tags_param.blank?

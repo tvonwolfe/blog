@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Post, type: :model do
+describe Post, type: :model do
   subject(:post) { build(:post) }
 
   describe "validations" do
@@ -80,6 +80,24 @@ RSpec.describe Post, type: :model do
       describe ".published" do
         it "only returns published posts" do
           expect(described_class.published).to contain_exactly(published_post)
+        end
+      end
+
+      describe ".display_order" do
+        let(:posts) { create_list(:post, 3) }
+
+        before do
+          posts.each_with_index do |post, index|
+            post.update(published_at: index.seconds.from_now)
+          end
+        end
+
+        it "returns posts in order of published_at" do
+          expect(Post.where(id: posts.pluck(:id)).display_order.to_a.pluck(:id)).to eq([
+            posts.last.id,
+            posts.second.id,
+            posts.first.id
+          ])
         end
       end
     end

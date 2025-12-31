@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Tag < ApplicationRecord
   MIN_TAG_LENGTH = 1
   MAX_TAG_LENGTH = 64

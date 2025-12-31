@@ -14,7 +14,6 @@ module Views
         @meta_tags = Components::MetaTags.new
       end
 
-
       def view_template
         render Components::Layout.new(title: post.title, meta_tags: meta_tags) do
           post_title
@@ -56,7 +55,7 @@ module Views
       end
 
       def published_date
-        time datetime: post.published_at&.to_date do
+        time datetime: post.published_at do
           post.published_at&.strftime(DATE_FORMAT)
         end
       end

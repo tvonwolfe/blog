@@ -2,7 +2,12 @@
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
+require_relative 'support/auth_helpers'
+require_relative 'support/component_helpers'
+
+require 'capybara/rails'
 require 'dotenv/load'
+
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 # Uncomment the line below in case you have `--require rails_helper` in the `.rspec` file
@@ -71,4 +76,8 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
   config.include FactoryBot::Syntax::Methods
+
+  # enable rendering of Phlex components for specs
+  config.include ComponentHelpers, type: :component
+  config.include AuthHelpers, type: :request
 end
