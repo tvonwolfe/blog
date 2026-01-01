@@ -42,4 +42,5 @@ group :development do
   gem "web-console"
 end
 
+gem "aws-sdk-s3", require: false
 gem "marksmith", "~> 0.4.7"
