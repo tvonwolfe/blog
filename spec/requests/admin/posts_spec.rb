@@ -130,7 +130,7 @@ describe "Admin::Posts", type: :request do
           post admin_posts_path, params: params
 
           expect(response).not_to be_successful
-          expect(response).to have_http_status(:unprocessable_entity)
+          expect(response).to have_http_status(:unprocessable_content)
         end
 
         it "renders the correct view" do
@@ -235,7 +235,7 @@ describe "Admin::Posts", type: :request do
         it "returns a 422 status code" do
           put admin_post_path(post), params: params
 
-          expect(response).to have_http_status(:unprocessable_entity)
+          expect(response).to have_http_status(:unprocessable_content)
         end
 
         it "renders the edit view with the post" do

@@ -18,7 +18,7 @@ module Admin
       if post.persisted?
         redirect_to post_path(post)
       else
-        render Views::Admin::Posts::New.new(post:), status: :unprocessable_entity
+        render Views::Admin::Posts::New.new(post:), status: :unprocessable_content
       end
     end
 
@@ -33,7 +33,7 @@ module Admin
       if updated_post.errors.none?
         redirect_to admin_posts_path
       else
-        render Views::Admin::Posts::Edit.new(post: updated_post), status: :unprocessable_entity
+        render Views::Admin::Posts::Edit.new(post: updated_post), status: :unprocessable_content
       end
     end
 

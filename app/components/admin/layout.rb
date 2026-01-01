@@ -18,7 +18,6 @@ module Components
         html(lang: "en-US") do
           head do
             title { @title }
-            link rel: "icon", type: "image/x-icon", href: "/favicon.png"
 
             meta name: "viewport", content: "width=device-width,initial-scale=1"
             meta name: "apple-mobile-web-app-capable", content: "yes"
@@ -28,6 +27,7 @@ module Components
             csp_meta_tag
 
             stylesheet_link_tag :app, data: { turbo_track: "reload" }
+            stylesheet_link_tag :marksmith
             javascript_importmap_tags
           end
 

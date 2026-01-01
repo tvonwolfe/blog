@@ -8,6 +8,8 @@ module Components
 
         attr_reader :post
 
+        register_output_helper def marksmith_tag(...) = nil
+
         def initialize(post:)
           @post = post
         end
@@ -25,9 +27,7 @@ module Components
                 label for: "post-content", class: "font-bold" do
                   "Markdown Content"
                 end
-                textarea id: "post-content", name: "post[content]", class: "w-full border border-slate-300 p-1 rounded-sm min-h-[42rem]" do
-                  post.content
-                end
+                marksmith_tag "post[content]", value: post.content
               end
               div class: "flex justify-end" do
                 input type: :submit, class: "w-full sm:w-auto mt-4 p-2 px-6 rounded-sm text-slate-100 bg-slate-700 hover:bg-slate-600 hover:cursor-pointer", value: "Save"

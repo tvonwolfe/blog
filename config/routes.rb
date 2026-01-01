@@ -14,11 +14,14 @@ Rails.application.routes.draw do
         post :logout, to: "sessions#destroy"
       end
     end
+    root to: "admin/posts#index"
   end
 
+  mount Marksmith::Engine => Marksmith.configuration.mount_path
+
   root "posts#index"
-  get  :feed, to: "posts#index", defaults: { format: :xml }
+  get :feed, to: "posts#index", defaults: { format: :xml }
 
   # redirect all unrecognized paths to the root path.
-  match "*path" => "posts#index", via: %i[get post put patch delete], to: redirect("/")
+  # match "*path" => "posts#index", via: %i[get post put patch delete], to: redirect("/")
 end

@@ -1,8 +1,8 @@
 module Admin
   class ApplicationController < ::ApplicationController
-    before_action :authorize_admin_session
+    include AdminSession
 
-    private
+    before_action :authorize_admin_session
 
     def authorize_admin_session
       return if admin?
