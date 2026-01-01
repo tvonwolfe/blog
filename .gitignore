@@ -36,3 +36,7 @@
 /app/assets/builds/*
 !/app/assets/builds/.keep
 *.tar
+
+# Ignore key files for decrypting credentials and more.
+/config/credentials/*.key
+
