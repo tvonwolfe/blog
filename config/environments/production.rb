@@ -48,8 +48,11 @@ Rails.application.configure do
 
   # Replace the default in-process memory cache store with a durable alternative.
   redis_url = ENV.fetch("REDIS_URL", nil)
-  puts "REDIS_URL environment variable not set!"
-  config.cache_store = :redis_cache_store, { url: redis_url } if redis_url.present?
+  if redis_url.present?
+    config.cache_store = :redis_cache_store, { url: redis_url }
+  else
+    puts "REDIS_URL environment variable not set!"
+  end
 
   # Replace the default in-process and non-durable queuing backend for Active Job.
   # config.active_job.queue_adapter = :solid_queue

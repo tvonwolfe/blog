@@ -8,7 +8,7 @@
 # For a containerized dev environment, see Dev Containers: https://guides.rubyonrails.org/getting_started_with_devcontainer.html
 
 # Make sure RUBY_VERSION matches the Ruby version in .ruby-version
-ARG RUBY_VERSION=3.4.5
+ARG RUBY_VERSION=3.4.8
 FROM ruby:$RUBY_VERSION-slim
 
 # Rails app lives here
@@ -18,7 +18,7 @@ WORKDIR /rails
 # Install base packages
 RUN apt-get update -qq
 RUN apt-get install --no-install-recommends -y curl libjemalloc2 libpq-dev \
-            build-essential pkg-config libyaml-dev libvips libjpeg-turbo-dev
+            build-essential pkg-config libyaml-dev libvips
 
 # Install application gems
 RUN bundle config set --local without 'development test'
