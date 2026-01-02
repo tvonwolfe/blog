@@ -35,6 +35,8 @@
 
 /app/assets/builds/*
 !/app/assets/builds/.keep
+
+# ignore locally saved container images
 *.tar
 
 # Ignore key files for decrypting credentials and more.
