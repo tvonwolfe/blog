@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 ruby "3.4.8"
 
-gem "bcrypt", "~> 3.1.7"
+gem "bcrypt", "~> 3.1.21"
 gem "bootsnap", require: false
 gem "commonmarker"
 gem "image_processing", "~> 1.2"
