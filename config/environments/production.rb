@@ -47,9 +47,8 @@ Rails.application.configure do
   config.active_support.report_deprecations = false
 
   # Replace the default in-process memory cache store with a durable alternative.
-  redis_url = ENV.fetch("REDIS_URL", nil)
-  if redis_url.present?
-    config.cache_store = :redis_cache_store, { url: redis_url }
+  if ENV.key? "REDIS_URL"
+    config.cache_store = :redis_cache_store, { url: ENV.fetch("REDIS_URL") }
   else
     puts "REDIS_URL environment variable not set!"
   end
