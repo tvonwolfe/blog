@@ -30,7 +30,6 @@ module Components
           link href: "https://github.com/tvonwolfe", rel: "me"
           link href: "https://bsky.app/profile/tvonwolfe.com", rel: "me"
 
-          csrf_meta_tags
           csp_meta_tag
 
           stylesheet_link_tag :app, data: { turbo_track: "reload" }
