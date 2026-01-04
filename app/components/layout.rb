@@ -10,6 +10,8 @@ module Components
 
     attr_reader :meta_tags
 
+    register_element :use
+
     def initialize(title: "tvonwolfe", meta_tags: nil)
       @title = title
       @meta_tags = meta_tags || MetaTags.new
@@ -41,10 +43,32 @@ module Components
 
         body class: "text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-[#141c2b] min-h-full p-4 md:p-8 min-h-screen flex flex-col justify-between" do
           div class: "flex flex-col lg:grid lg:grid-cols-[25%_50%_25%] grow" do
-            header id: "header", class: "pt-2 pb-6 md:pt-0" do
+            header id: "header", class: "pt-2 pb-6 md:pt-0 flex flex-col-reverse sm:flex-col" do
               h1 class: "font-mono text-4xl font-bold" do
                 a href: root_path do
                   plain "tvonwolfe"
+                end
+              end
+              div id: "social-links", class: "flex space-between gap-3 sm:gap-4 mb-2 sm:mt-2 sm:mb-0 text-slate-500" do
+                a href: "mailto:me@tvonwolfe.com", data: { turbo: false } do
+                  svg class: "social-link icon" do
+                    use href: "/icons.svg#email"
+                  end
+                end
+                a href: "https://github.com/tvonwolfe" do
+                  svg class: "social-link icon" do
+                    use href: "/icons.svg#github"
+                  end
+                end
+                a href: "https://bsky.app/profile/tvonwolfe.com" do
+                  svg class: "social-link icon" do
+                    use href: "/icons.svg#bluesky"
+                  end
+                end
+                a href: "/feed" do
+                  svg class: "social-link icon" do
+                    use href: "/icons.svg#rss"
+                  end
                 end
               end
             end
@@ -60,12 +84,6 @@ module Components
                 raw safe Date.current.year.to_s
                 plain " "
                 plain "Tony Von Wolfe"
-              end
-            end
-
-            div class: "self-center" do
-              a href: feed_url, data: { turbo: "false" } do
-                img src: "/rss.svg", height: "24px", width: "24px", alt: "rss feed"
               end
             end
           end
