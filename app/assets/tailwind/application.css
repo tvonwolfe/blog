@@ -3,6 +3,12 @@
 /* TODO: un-comment this when implementing toggle functionality */
 /* @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *)); */
 
+.social-link.icon {
+  @apply hover:text-slate-600 dark:hover:text-slate-400;
+  @apply transition-colors;
+  @apply h-5 w-5 sm:h-6 sm:w-6;
+}
+
 ol,
 ul {
   @apply pl-6
