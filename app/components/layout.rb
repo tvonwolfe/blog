@@ -50,26 +50,10 @@ module Components
                 end
               end
               div id: "social-links", class: "flex space-between gap-3 sm:gap-4 mb-2 sm:mt-2 sm:mb-0 text-slate-500" do
-                a href: "mailto:me@tvonwolfe.com", data: { turbo: false } do
-                  svg class: "social-link icon" do
-                    use href: "/icons.svg#email"
-                  end
-                end
-                a href: "https://github.com/tvonwolfe" do
-                  svg class: "social-link icon" do
-                    use href: "/icons.svg#github"
-                  end
-                end
-                a href: "https://bsky.app/profile/tvonwolfe.com" do
-                  svg class: "social-link icon" do
-                    use href: "/icons.svg#bluesky"
-                  end
-                end
-                a href: "/feed" do
-                  svg class: "social-link icon" do
-                    use href: "/icons.svg#rss"
-                  end
-                end
+                social_link name: "email", href: "mailto:me@tvonwolfe.com"
+                social_link name: "github", href: "https://github.com/tvonwolfe"
+                social_link name: "bluesky", href: "https://bsky.app/profile/tvonwolfe.com"
+                social_link name: "rss", href: "/feed"
               end
             end
             main class: "md:max-w-2xl md:mx-auto" do
@@ -92,6 +76,14 @@ module Components
     end
 
     private
+
+    def social_link(href:, name:)
+      a href: do
+        svg class: "social-link icon" do
+          use href: "/icons.svg##{name}"
+        end
+      end
+    end
 
     def theme_toggle_script
       script do
