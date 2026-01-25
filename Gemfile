@@ -48,4 +48,4 @@ gem "marksmith", "~> 0.4.7"
 # activesupport still uses positional arguments to initialize ConnectionPool
 # objects. connection_pool v3.0 and up now uses keyword arguments.
 # pinning to the last pre-3.0 version until activesupport updates their usages.
-gem "connection_pool", "~>2.5.5"
+gem "connection_pool", "~>3.0.2"
