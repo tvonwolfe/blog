@@ -60,8 +60,8 @@ module Components
               yield
             end
           end
-          footer class: "pt-4 sm:pt-0 flex w-full justify-between" do
-            div id: "copyright", class: "flex flex-row self-center text-slate-500" do
+          footer class: "pt-4 sm:pt-0 w-full flex flex-col-reverse sm:flex-row sm:justify-between" do
+            div id: "copyright", class: "flex flex-row sm:self-center text-slate-500" do
               p do
                 raw safe "&copy;"
                 plain " "
@@ -69,6 +69,17 @@ module Components
                 plain " "
                 plain "Tony Von Wolfe"
               end
+            end
+            div id: "meta-links", class: "flex flex-row sm:self-center space-between gap-3 sm:gap-4 text-slate-500" do
+              if NowUpdate.any?
+                a href: "/now", class: "link" do
+                  "Now"
+                end
+              end
+              # TODO: about page
+              # a href: "/about", class: "hover:underline" do
+              #   "About"
+              # end
             end
           end
         end
@@ -82,37 +93,6 @@ module Components
         svg class: "social-link icon" do
           use href: "/icons.svg##{name}"
         end
-      end
-    end
-
-    def theme_toggle_script
-      script do
-        raw safe <<-JS
-        const THEME_OPTIONS = {
-          light: "light",
-          dark: "dark",
-        };
-
-        const setTheme = (theme) => {
-          document.documentElement.dataset.theme = theme;
-          localStorage.theme = theme
-        };
-
-        // set up listener to auto-toggle on system theme change
-        const colorSchemeMediaQuery = window.matchMedia("(prefers-color-scheme: dark)")
-        colorSchemeMediaQuery.addEventListener("change", (e) => {
-          const theme = (e.matches) ? THEME_OPTIONS.dark : THEME_OPTIONS.light;
-          setTheme(theme);
-        })
-
-        // set theme on page load. if we have a theme stored already, use that.
-          // otherwise, use the detected the browser/system setting.
-          const shouldUseDarkTheme = localStorage.theme === "dark" ||
-          (!("theme" in localStorage) && colorSchemeMediaQuery.matches);
-
-        const theme = shouldUseDarkTheme ? THEME_OPTIONS.dark : THEME_OPTIONS.light;
-        setTheme(theme);
-        JS
       end
     end
   end
