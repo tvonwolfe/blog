@@ -1,12 +1,13 @@
 @import "tailwindcss";
 
-/* TODO: un-comment this when implementing toggle functionality */
-/* @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *)); */
-
 .social-link.icon {
   @apply hover:text-slate-600 dark:hover:text-slate-400;
   @apply transition-colors;
   @apply h-5 w-5 sm:h-6 sm:w-6;
+}
+
+.link {
+  @apply underline decoration-dotted underline-offset-4 hover:decoration-solid;
 }
 
 ol,
@@ -68,7 +69,7 @@ ul {
   }
 
   a {
-    @apply underline underline-offset-4 hover:decoration-dotted;
+    @apply underline decoration-dotted underline-offset-4 hover:decoration-solid;
   }
 
   img {

@@ -8,6 +8,8 @@ module Components
 
     before_template :add_component_comment
 
+    register_output_helper def marksmith_tag(...) = nil
+
     def add_component_comment
       return unless Rails.env.development?
 

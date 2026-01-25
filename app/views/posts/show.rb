@@ -35,6 +35,10 @@ module Views
         meta_tags.add property: "og:title", content: post.title
         meta_tags.add property: "og:type", content: "article"
         meta_tags.add property: "og:url", content: post_url(post)
+        meta_tags.add property: "og:site_name", content: "tvonwolfe"
+        meta_tags.add property: "og:locale", content: "en_US"
+        meta_tags.add property: "article:author", content: "Tony Von Wolfe"
+        meta_tags.add property: "article:published_time", content: post.published_at if post.published?
       end
 
       def post_title
@@ -42,7 +46,7 @@ module Views
           h1 class: "text-5xl font-extrabold" do
             post.title
           end
-          div class: "pt-4 text-slate-500 dark:text-slate-400 text-sm font-sans flex gap-2 items-center" do
+          div class: "pt-4 text-slate-500 dark:text-slate-400 text-sm flex gap-2 items-center" do
             if post.published?
               published_date
             else

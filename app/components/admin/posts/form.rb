@@ -8,8 +8,6 @@ module Components
 
         attr_reader :post
 
-        register_output_helper def marksmith_tag(...) = nil
-
         def initialize(post:)
           @post = post
         end
@@ -23,10 +21,7 @@ module Components
               input_with_label label: "Title", id: :title, value: post.title
               input_with_label label: "Tags", id: :tags, value: post.tags.pluck(:value).join(", ")
 
-              div class: "flex flex-col" do
-                label for: "post-content", class: "font-bold" do
-                  "Markdown Content"
-                end
+              div class: "flex flex-col mt-6" do
                 marksmith_tag "post[content]", value: post.content
               end
               div class: "flex justify-end" do
