@@ -31,7 +31,7 @@ module Components
             javascript_importmap_tags
           end
 
-          body class: "min-h-screen" do
+          body class: "min-h-screen dark:bg-zinc-700 dark:text-zinc-100" do
             render Components::Admin::Header if header?
             main class: "w-2xl mx-auto py-6 px-4" do
               yield

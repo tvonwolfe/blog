@@ -8,13 +8,14 @@ module Components
     include Phlex::Rails::Helpers::JavaScriptImportmapTags
     include Phlex::Rails::Helpers::AutoDiscoveryLinkTag
 
-    attr_reader :meta_tags
+    attr_reader :meta_tags, :admin_session
 
     register_element :use
 
-    def initialize(title: "tvonwolfe", meta_tags: nil)
+    def initialize(title: "tvonwolfe", meta_tags: nil, admin_session: false)
       @title = title
       @meta_tags = meta_tags || MetaTags.new
+      @admin_session = admin_session
     end
 
     def view_template
@@ -30,7 +31,7 @@ module Components
           meta charset: "utf-8"
 
           link href: "https://github.com/tvonwolfe", rel: "me"
-          link href: "https://bsky.app/profile/tvonwolfe.com", rel: "me"
+          link href: "https://bsky.app/profile/tvonwolfe.com", rel: "me atproto"
 
           csp_meta_tag
 
@@ -51,8 +52,8 @@ module Components
               end
               div id: "social-links", class: "flex space-between gap-3 sm:gap-4 mb-2 sm:mt-2 sm:mb-0 text-slate-500" do
                 social_link name: "email", href: "mailto:me@tvonwolfe.com"
-                social_link name: "github", href: "https://github.com/tvonwolfe"
-                social_link name: "bluesky", href: "https://bsky.app/profile/tvonwolfe.com"
+                social_link name: "github", href: "https://github.com/tvonwolfe", rel: "me"
+                social_link name: "bluesky", href: "https://bsky.app/profile/tvonwolfe.com", rel: "me atproto"
                 social_link name: "rss", href: "/feed"
               end
             end
@@ -88,8 +89,10 @@ module Components
 
     private
 
-    def social_link(href:, name:)
-      a href: do
+    def admin_session? = admin_session
+
+    def social_link(href:, name:, **)
+      a href:, ** do
         svg class: "social-link icon" do
           use href: "/icons.svg##{name}"
         end

@@ -16,7 +16,7 @@ module Views
               h1 class: "text-3xl" do
                 "Posts"
               end
-              a href: new_admin_post_path, class: "text-slate-100 p-2 bg-slate-700 rounded-sm" do
+              a href: new_admin_post_path, class: "text-slate-100 p-2 bg-slate-700 dark:bg-zinc-500 rounded-sm hover:bg-slate-600 hover:dark:bg-zinc-600" do
                 "New Post"
               end
             end
@@ -27,7 +27,7 @@ module Views
         private
 
         def posts_list
-          ol do
+          ul do
             posts.each do |post|
               posts_list_item(post)
             end
@@ -35,11 +35,13 @@ module Views
         end
 
         def posts_list_item(post)
-          li class: "p-1 hover:bg-slate-100 rounded-sm" do
-            div do
-              a href: edit_admin_post_path(post) do
+          li class: "p-2 hover:bg-slate-100 dark:hover:bg-zinc-600 rounded-sm" do
+            div class: "flex justify-between" do
+              span do
                 h3 class: "text-xl font-bold" do
-                  post.title
+                  a href: edit_admin_post_path(post), class: "hover:underline text-underline-offset-4" do
+                    post.title
+                  end
                 end
 
                 p do
@@ -50,6 +52,13 @@ module Views
                     end
                   else
                     em { "Not published" }
+                  end
+                end
+              end
+              div class: "self-center mr-2" do
+                if post.published?
+                  a href: post_path(post), class: "hover:underline" do
+                    "View"
                   end
                 end
               end

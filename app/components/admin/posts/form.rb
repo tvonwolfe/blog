@@ -18,14 +18,14 @@ module Components
 
             form action: form_action, method: form_method, class: "w-full" do
               form_authenticity_token
-              input_with_label label: "Title", id: :title, value: post.title
-              input_with_label label: "Tags", id: :tags, value: post.tags.pluck(:value).join(", ")
+              input_with_label :title, post.title
+              input_with_label :tags, post.tags.pluck(:value).join(" ")
 
               div class: "flex flex-col mt-6" do
                 marksmith_tag "post[content]", value: post.content
               end
               div class: "flex justify-end" do
-                input type: :submit, class: "w-full sm:w-auto mt-4 p-2 px-6 rounded-sm text-slate-100 bg-slate-700 hover:bg-slate-600 hover:cursor-pointer", value: "Save"
+                input type: :submit, class: "w-full sm:w-auto mt-4 p-2 px-6 rounded-sm text-slate-100 bg-slate-700 hover:bg-slate-600 hover:cursor-pointer dark:bg-zinc-500 dark:hover:bg-zinc-600", value: "Save"
               end
             end
           end
@@ -35,18 +35,15 @@ module Components
 
         def errors = Components::ErrorList.new(post.errors)
 
-        def input_with_label(**params)
-          label_name = params[:label]
-          input_id = params[:id]
-          input_type = params[:type]
-          value = params[:value]
-          name = "#{post.class.name.downcase}[#{input_id}]"
+        def input_with_label(id, value)
+          label_value = id.to_s.capitalize
+          name = "#{post.class.name.downcase}[#{id}]"
 
           div class: "flex flex-col mb-4" do
-            label for: input_id, class: "font-bold" do
-              label_name
+            label for: id, class: "font-bold" do
+              label_value
             end
-            input id: input_id, name: name, type: input_type, value: value, class: "rounded-sm border border-slate-300 p-1"
+            input id: id, name:, value:, class: "rounded-sm border border-slate-300 dark:border-zinc-400 p-1"
           end
         end
 
