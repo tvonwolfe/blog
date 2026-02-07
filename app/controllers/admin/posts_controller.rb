@@ -59,7 +59,7 @@ module Admin
         :content,
         :tags
       ).tap do |post_params|
-        post_params[:tags] = Array(post_params.extract_value(:tags, delimiter: ",")).map(&:strip)
+        post_params[:tags] = Array(post_params.extract_value(:tags, delimiter: " ")).map(&:strip)
       end
     end
   end

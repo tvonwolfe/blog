@@ -41,7 +41,7 @@ describe "Admin::Posts", type: :request do
         post: {
           title: "A Post With a Title",
           content: "# H1 Tag\nregular stuff\n\n",
-          tags: tags.join(",")
+          tags: tags.join(" ")
         }
       }
     end

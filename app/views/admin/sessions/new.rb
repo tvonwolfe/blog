@@ -13,9 +13,9 @@ module Views
                 label for: "password", class: "font-bold" do
                   "Password"
                 end
-                input id: :password, name: "session[password]", type: :password, class: "p-2 border border-stone-200", required: true
+                input id: :password, name: "session[password]", type: :password, class: "p-2 border border-slate-300 dark:border-zinc-400", required: true
                 form_authenticity_token
-                input type: :submit, class: "mt-4 p-2 rounded text-slate-200 bg-[#141c2b] hover:cursor-pointer", value: "Log In"
+                input type: :submit, class: "mt-4 p-2 rounded text-slate-200 bg-[#141c2b] dark:bg-zinc-600 dark:hover:bg-zinc-500 hover:cursor-pointer", value: "Log In"
               end
             end
           end

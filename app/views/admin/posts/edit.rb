@@ -12,7 +12,7 @@ module Views
 
         def view_template
           render Components::Admin::Layout.new(title: "Edit Post") do
-            a href: admin_posts_path, class: "text-slate-600 hover:underline" do
+            a href: admin_posts_path, class: "text-slate-600 hover:underline dark:text-slate-100" do
               "← All Posts"
             end
             h1 class: "text-3xl font-bold my-2" do
