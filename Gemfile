@@ -43,7 +43,7 @@ group :development do
 end
 
 gem "aws-sdk-s3", require: false
-gem "marksmith", "~> 0.4.7"
+gem "marksmith", "~> 0.4.8"
 
 # activesupport still uses positional arguments to initialize ConnectionPool
 # objects. connection_pool v3.0 and up now uses keyword arguments.
