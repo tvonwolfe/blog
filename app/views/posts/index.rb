@@ -3,7 +3,6 @@
 module Views
   module Posts
     class Index < Base
-      include Pagy::Frontend
       include Phlex::Rails::Helpers::Request
 
       attr_reader :posts, :paginator, :params
@@ -17,10 +16,10 @@ module Views
       def view_template
         render Components::Layout do
           tag_filter
-          div id: do
+          div id:, class: "mx-auto" do
             posts.each { |post| post_link(post) }
           end
-          raw safe pagy_nav(paginator) unless paginator.last == 1 # don't show the paginator if there's only one page.
+          raw safe paginator.series_nav
         end
       end
 

@@ -81,16 +81,21 @@ nav.pagy {
   @apply flex justify-between pt-4;
 
   a {
-    @apply px-3 py-1;
-
+    /* @apply px-3 py-1; */
+    @apply h-8 w-8;
+    @apply text-center content-center;
   }
 
-  .current {
+  a[aria-current="page"] {
     @apply text-slate-200 bg-slate-500;
     @apply rounded-sm;
   }
 
-  :not(.current) & :not([aria-disabled="true"]) {
+  a[aria-disabled="true"] {
+    @apply cursor-not-allowed;
+  }
+
+  :not(.link) & :not([aria-disabled="true"]) {
     @apply hover:bg-slate-300 dark:hover:bg-slate-600;
     @apply rounded-sm;
   }

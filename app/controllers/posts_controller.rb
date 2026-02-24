@@ -1,14 +1,12 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
-  include Pagy::Backend
+  include Pagy::Method
 
   before_action :set_posts, only: :index
   before_action :set_post, only: :show
 
   before_action :enable_http_caching, only: :show
-
-  rescue_from Pagy::OverflowError, with: -> { redirect_to :root }
 
   def index
     respond_to do |format|
@@ -36,7 +34,7 @@ class PostsController < ApplicationController
     post_scope = post_scope.tagged_with index_params[:tag] if index_params.key? :tag
     post_scope = post_scope.titled index_params[:title] if index_params.key? :title
 
-    @paginator, @posts = pagy(post_scope)
+    @paginator, @posts = pagy(:offset, post_scope)
   end
 
   def index_params
