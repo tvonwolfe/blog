@@ -57,7 +57,7 @@ module Components
                 social_link name: "rss", href: "/feed"
               end
             end
-            main class: "md:max-w-2xl md:mx-auto" do
+            main class: "md:w-2xl md:mx-auto" do
               yield
             end
           end
