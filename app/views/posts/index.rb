@@ -19,7 +19,7 @@ module Views
           div id:, class: "mx-auto" do
             posts.each { |post| post_link(post) }
           end
-          raw safe paginator.series_nav
+          raw safe paginator.series_nav unless paginator.last == 1
         end
       end
 
