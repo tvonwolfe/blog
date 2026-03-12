@@ -437,7 +437,6 @@ DEPENDENCIES
   brakeman
   capybara
   commonmarker
-  connection_pool (~> 3.0.2)
   debug
   dotenv-rails
   factory_bot_rails
