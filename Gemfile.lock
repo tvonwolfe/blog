@@ -218,7 +218,7 @@ GEM
       racc (~> 1.4)
     nokogiri (1.19.1-x86_64-linux-musl)
       racc (~> 1.4)
-    pagy (43.3.2)
+    pagy (43.4.0)
       json
       uri
       yaml
@@ -446,7 +446,7 @@ DEPENDENCIES
   jwt
   marksmith (~> 0.4.8)
   nokogiri
-  pagy (~> 43.3.0)
+  pagy (~> 43.4.0)
   pg (~> 1.1)
   phlex-rails
   propshaft
