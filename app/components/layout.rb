@@ -54,7 +54,7 @@ module Components
                 social_link name: "email", href: "mailto:me@tvonwolfe.com"
                 social_link name: "github", href: "https://github.com/tvonwolfe", rel: "me"
                 social_link name: "bluesky", href: "https://bsky.app/profile/tvonwolfe.com", rel: "me atproto"
-                social_link name: "rss", href: "/feed"
+                social_link name: "rss", href: "/feed", data: { turbo: "false" }
               end
             end
             main class: "md:w-2xl md:mx-auto" do
