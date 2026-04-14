@@ -75,6 +75,13 @@
   ul {
     @apply pl-6
   }
+
+  blockquote {
+    @apply text-stone-600 dark:text-stone-300;
+    font-style: italic;
+    padding-left: 1rem;
+    border-left: 2px solid grey;
+  }
 }
 
 nav.pagy {
