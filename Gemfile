@@ -1,6 +1,6 @@
 source "https://gem.coop"
 
-ruby "4.0.1"
+ruby "4.0.2"
 
 gem "bcrypt", "~> 3.1.21"
 gem "bootsnap", require: false
