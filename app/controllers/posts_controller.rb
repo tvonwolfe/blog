@@ -24,7 +24,11 @@ class PostsController < ApplicationController
   attr_reader :posts, :post, :paginator
 
   def set_post
-    @post = Post.published.find_by!(handle: params[:handle])
+    @post = begin
+      scope = Post
+      scope = scope.published unless admin?
+      scope.find_by!(handle: params[:handle])
+    end
   end
 
   def set_posts

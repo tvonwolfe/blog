@@ -56,10 +56,8 @@ module Views
                 end
               end
               div class: "self-center mr-2" do
-                if post.published?
-                  a href: post_path(post), class: "hover:underline" do
-                    "View"
-                  end
+                a href: post_path(post), class: "hover:underline" do
+                  post.published? ? "View" : "Preview"
                 end
               end
             end

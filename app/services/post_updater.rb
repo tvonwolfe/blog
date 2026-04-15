@@ -9,10 +9,19 @@ class PostUpdater
 
   def update(params)
     tags = instantiate_tags(params[:tags])
+    should_publish = params.delete(:publish)
+    should_unpublish = params.delete(:unpublish)
 
     post.transaction do
       post.tags = tags
       post.update(params.except(:tags))
+
+      if should_publish
+        post.publish
+      elsif should_unpublish
+        post.unpublish if post.published?
+      end
+
       Tag.dangling.destroy_all
     end
 

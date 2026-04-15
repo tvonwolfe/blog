@@ -18,6 +18,17 @@ class Post
       false
     end
 
+    def unpublish!
+      update!(published_at: nil)
+    end
+
+    def unpublish
+      unpublish!
+    rescue ActiveRecord::RecordInvalid => e
+      Rails.logger.error(self.class.name) { "Failed to unpublish post: #{e.message}" }
+      false
+    end
+
     def published? = published_at.present?
   end
 end
