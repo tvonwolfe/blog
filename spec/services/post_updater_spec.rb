@@ -91,4 +91,80 @@ describe PostUpdater do
       end
     end
   end
+
+  context "when `publish` param is present" do
+    let(:params) { { publish: } }
+
+    context "when param value is falsy" do
+      let(:publish) { nil }
+
+      it "doesn't publish the post" do
+        expect do
+          post_updater.update(params)
+        end.not_to change { post.reload.published? }
+      end
+    end
+
+    context "when the param value is truthy" do
+      let(:publish) { true }
+
+      context "when the post isn't published" do
+        it "publishes the post" do
+          expect do
+            post_updater.update(params)
+          end.to change { post.reload.published? }.from(false).to(true)
+        end
+      end
+
+      context "when the post is already published" do
+        before do
+          post.publish!
+        end
+
+        it "doesn't alter the state of the post" do
+          expect do
+            post_updater.update(params)
+          end.not_to change { post.reload.published? }
+        end
+      end
+    end
+  end
+
+  context "when `unpublish` param is present" do
+    let(:params) { { unpublish: } }
+
+    context "when param value is falsy" do
+      let(:unpublish) { nil }
+
+      it "doesn't unpublish the post" do
+        expect do
+          post_updater.update(params)
+        end.not_to change { post.reload.published? }
+      end
+    end
+
+    context "when the param value is truthy" do
+      let(:unpublish) { true }
+
+      context "when the post isn't published" do
+        it "doesn't alter the state of the post" do
+          expect do
+            post_updater.update(params)
+          end.not_to change { post.reload.published? }
+        end
+      end
+
+      context "when the post is published" do
+        before do
+          post.publish!
+        end
+
+        it "unpublishes the post" do
+          expect do
+            post_updater.update(params)
+          end.to change { post.reload.published? }.from(true).to(false)
+        end
+      end
+    end
+  end
 end

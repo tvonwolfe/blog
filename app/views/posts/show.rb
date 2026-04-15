@@ -50,7 +50,9 @@ module Views
             if post.published?
               published_date
             else
-              "Not published"
+              p do
+                em { "Not published" }
+              end
             end
             hr class: "flex-1 h-1 text-slate-300 dark:text-slate-600"
             render Components::Posts::Tags.new(post)

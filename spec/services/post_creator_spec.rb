@@ -54,10 +54,36 @@ describe PostCreator do
         end.to change(Post, :count).by(1)
       end
 
-      it "publishes the post" do
-        post = post_creator.create_post
+      context "when `publish` param is not included" do
+        it "doesn't publish the post" do
+          post = post_creator.create_post
 
-        expect(post).to be_published
+          expect(post).not_to be_published
+        end
+      end
+
+      context "when `publish` param is included" do
+        let(:params) { attributes_for(:post).merge(publish:) }
+
+        context "when the param value is true" do
+          let(:publish) { true }
+
+          it "publishes the post" do
+            post = post_creator.create_post
+
+            expect(post).to be_published
+          end
+        end
+
+        context "when the param value is false" do
+          let(:publish) { false }
+
+          it "doesn't publish the post" do
+            post = post_creator.create_post
+
+            expect(post).not_to be_published
+          end
+        end
       end
 
       context "when tags are included" do

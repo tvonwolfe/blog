@@ -5,7 +5,7 @@ class PostCreator
 
   def initialize(params)
     @params = params
-    Rails.logger.info(self.class.name) { "params: #{params}" }
+    @publish = params.delete(:publish)
   end
 
   def create_post
@@ -14,13 +14,15 @@ class PostCreator
 
     post.transaction do
       post.save
-      post.publish
+      post.publish if publish?
     end
 
     post
   end
 
   private
+
+  def publish? = @publish
 
   def post_params = params.except(:tags)
 

@@ -24,8 +24,28 @@ module Components
               div class: "flex flex-col mt-6" do
                 marksmith_tag "post[content]", value: post.content
               end
-              div class: "flex justify-end" do
+
+              div class: "my-4" do
+                div class: "flex gap-1" do
+                  id = "publish"
+                  checkbox_params = { id:, name: "post[#{id}]" }
+                  checkbox_params = checkbox_params.merge(checked: "true", disabled: "true") if post.published?
+                  input type: :checkbox, **checkbox_params
+                  label for: id do
+                    post.published? ? "Published" : "Publish"
+                  end
+                end
+              end
+
+              div class: "flex justify-end gap-2" do
                 input type: :submit, class: "w-full sm:w-auto mt-4 p-2 px-6 rounded-sm text-slate-100 bg-slate-700 hover:bg-slate-600 hover:cursor-pointer dark:bg-zinc-500 dark:hover:bg-zinc-600", value: "Save"
+              end
+            end
+            if post.published?
+              form action: form_action, method: form_method, class: "w-full flex justify-end" do
+                form_authenticity_token
+                input type: :hidden, id: "unpublish", name: "post[unpublish]", value: "true"
+                input type: :submit, class: "w-full sm:w-auto mt-4 p-2 px-6 rounded-sm text-stone-50 bg-red-900 hover:bg-red-950 hover:cursor-pointer", value: "Unpublish"
               end
             end
           end

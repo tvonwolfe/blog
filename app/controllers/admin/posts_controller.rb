@@ -57,9 +57,18 @@ module Admin
       @post_params ||= params.require(:post).permit(
         :title,
         :content,
-        :tags
+        :tags,
+        :publish,
+        :unpublish,
       ).tap do |post_params|
         post_params[:tags] = Array(post_params.extract_value(:tags, delimiter: " ")).map(&:strip)
+        post_params[:publish] = ActiveModel::Type::Boolean.new.cast(post_params[:publish])
+
+        if action_name.to_sym == :update
+          post_params[:unpublish] = ActiveModel::Type::Boolean.new.cast(post_params[:unpublish])
+        else
+          post_params.delete(:unpublish)
+        end
       end
     end
   end
