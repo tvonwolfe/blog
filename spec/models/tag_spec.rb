@@ -24,6 +24,13 @@ describe Tag, type: :model do
     end
   end
 
+  describe "normalizations" do
+    it "normalizes the tag value" do
+      tag = described_class.new(value: "TAG-VALUE       ")
+      expect(tag.value).to eq "tag-value"
+    end
+  end
+
   describe ".dangling" do
     let(:tagged_post) { create(:post, :tagged) }
     let!(:dangling_tag) { create(:tag) }
