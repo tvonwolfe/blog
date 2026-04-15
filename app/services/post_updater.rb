@@ -19,7 +19,7 @@ class PostUpdater
       if should_publish
         post.publish
       elsif should_unpublish
-        post.unpublish if post.published?
+        post.unpublish
       end
 
       Tag.dangling.destroy_all

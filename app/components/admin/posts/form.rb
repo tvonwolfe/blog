@@ -27,8 +27,7 @@ module Components
 
               div class: "my-4" do
                 div class: "flex gap-1" do
-                  id = "post[publish]"
-                  checkbox_params = { id:, name: id }
+                  checkbox_params = { id: "publish", name: "post[publish]" }
                   checkbox_params = checkbox_params.merge(checked: "true", disabled: "true") if post.published?
                   input type: :checkbox, **checkbox_params
                   label for: id do
