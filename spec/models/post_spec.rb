@@ -24,6 +24,14 @@ describe Post, type: :model do
     end
   end
 
+  describe "normalizations" do
+    it "normalizes the post title" do
+      post = Post.new(title: "    A Post Title     ")
+
+      expect(post.title).to eq "A Post Title"
+    end
+  end
+
   describe "Publishable" do
     describe "#publish!" do
       context "when the post has not been published yet" do

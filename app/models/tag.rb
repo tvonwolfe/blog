@@ -4,6 +4,8 @@ class Tag < ApplicationRecord
   MIN_TAG_LENGTH = 1
   MAX_TAG_LENGTH = 64
 
+  normalizes :value, with: ->(value) { value.downcase.strip }
+
   has_many :post_tags, inverse_of: :tag, dependent: :destroy
   has_many :posts, through: :post_tags
 

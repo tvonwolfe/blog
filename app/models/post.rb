@@ -6,6 +6,8 @@ class Post < ApplicationRecord
 
   MAX_TITLE_LENGTH = 140
 
+  normalizes :title, with: ->(title) { title.strip }
+
   before_validation -> { self.handle ||= to_param }
 
   validates :title, presence: true, length: { maximum: MAX_TITLE_LENGTH }
