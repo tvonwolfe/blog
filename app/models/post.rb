@@ -3,6 +3,7 @@
 class Post < ApplicationRecord
   include Publishable
   include Taggable
+  include Links
 
   MAX_TITLE_LENGTH = 140
 
