@@ -8,7 +8,7 @@
   <symbol viewBox="0 0 1920 1920" id="email" xmlns="http://www.w3.org/2000/svg">
     <path d="M0 1694.235h1920V226H0v1468.235ZM112.941 376.664V338.94H1807.06v37.723L960 1111.233l-847.059-734.57ZM1807.06 526.198v950.513l-351.134-438.89-88.32 70.475 378.353 472.998H174.042l378.353-472.998-88.32-70.475-351.134 438.89V526.198L960 1260.768l847.059-734.57Z" fill-rule="evenodd" fill="currentColor"/>
   </symbol>
-  <symbol viewBox="0 0 16 16" id="rss" xmlns="http://www.w3.org/2000/svg">
+  <symbol viewBox="0 0 16 16" id="atom" xmlns="http://www.w3.org/2000/svg">
     <g fill="currentColor">
       <circle cx="3" cy="13" r="2"/>
       <path d="M15 15h-2.7C12.3 8.8 7.2 3.7 1 3.7V1c7.7 0 14 6.3 14 14z"/>

@@ -3,8 +3,6 @@
 module Views
   module Posts
     class Index < Base
-      include Phlex::Rails::Helpers::Request
-
       attr_reader :posts, :paginator, :params
 
       def initialize(posts:, paginator:, params:)
