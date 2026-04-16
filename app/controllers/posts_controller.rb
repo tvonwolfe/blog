@@ -34,7 +34,7 @@ class PostsController < ApplicationController
   def set_posts
     return @paginator, @posts if defined?(@paginator) && defined?(@posts)
 
-    post_scope = Post.published.display_order
+    post_scope = Post.includes(:tags).published.display_order
     post_scope = post_scope.tagged_with index_params[:tag] if index_params.key? :tag
     post_scope = post_scope.titled index_params[:title] if index_params.key? :title
 
