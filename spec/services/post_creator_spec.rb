@@ -20,6 +20,12 @@ describe PostCreator do
 
         expect(post.errors).to be_present
       end
+
+      it "does not enqueue a PostLinkParserJob" do
+        expect do
+          post_creator.create_post
+        end.not_to have_enqueued_job(PostLinkParserJob)
+      end
     end
 
     context "when params are invalid" do
@@ -52,6 +58,12 @@ describe PostCreator do
           expect(post.title).to eq params[:title]
           expect(post.content).to eq params[:content]
         end.to change(Post, :count).by(1)
+      end
+
+      it "enqueues a PostLinkParserJob" do
+        post_creator.create_post
+
+        expect(PostLinkParserJob).to have_been_enqueued.with(an_instance_of(Post))
       end
 
       context "when `publish` param is not included" do

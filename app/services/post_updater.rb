@@ -16,6 +16,8 @@ class PostUpdater
       post.tags = tags
       post.update(params.except(:tags))
 
+      next if post.errors.any?
+
       if should_publish
         post.publish
       elsif should_unpublish
@@ -24,6 +26,8 @@ class PostUpdater
 
       Tag.dangling.destroy_all
     end
+
+    PostLinkParserJob.perform_later(post) unless post.errors.any?
 
     post
   end
