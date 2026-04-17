@@ -11,8 +11,8 @@ class Post < ApplicationRecord
 
   before_validation -> { self.handle ||= to_param }
 
-  validates :title, presence: true, length: { maximum: MAX_TITLE_LENGTH }
-  validates :handle, presence: true, uniqueness: true, length: { maximum: MAX_TITLE_LENGTH }
+  validates :title, presence: true, length: {maximum: MAX_TITLE_LENGTH}
+  validates :handle, presence: true, uniqueness: true, length: {maximum: MAX_TITLE_LENGTH}
   validates :content, presence: true
 
   scope :titled, ->(title) { where("title ILIKE :title", title: "%#{title}%") }

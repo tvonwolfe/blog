@@ -9,13 +9,13 @@ module Views
 
       def view_template
         render Components::Admin::Layout.new(title: "Update Now Page") do
-        a href: admin_posts_path, class: "text-slate-600 hover:underline" do
-          "← Back"
-        end
-        h1 class: "text-3xl font-bold my-2" do
-          "Now Page Update"
-        end
-        render Components::Admin::Now::Form.new(now_update:)
+          a href: admin_posts_path, class: "text-slate-600 hover:underline" do
+            "← Back"
+          end
+          h1 class: "text-3xl font-bold my-2" do
+            "Now Page Update"
+          end
+          render Components::Admin::Now::Form.new(now_update:)
         end
       end
     end

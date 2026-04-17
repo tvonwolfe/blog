@@ -7,7 +7,7 @@ describe "Admin::Sessions", type: :request do
     end
 
     context "when password param provided" do
-      let(:params) { {  session: { password: password_param } } }
+      let(:params) { {session: {password: password_param}} }
 
       context "when password is correct" do
         let(:password_param) { "test1234" }

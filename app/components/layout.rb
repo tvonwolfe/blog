@@ -35,7 +35,7 @@ module Components
 
           csp_meta_tag
 
-          stylesheet_link_tag :app, data: { turbo_track: "reload" }
+          stylesheet_link_tag :app, data: {turbo_track: "reload"}
           javascript_importmap_tags
           auto_discovery_link_tag :atom, feed_path
 
@@ -53,7 +53,7 @@ module Components
               social_link name: :email, href: "mailto:me@tvonwolfe.com"
               social_link name: :github, href: "https://github.com/tvonwolfe", rel: "me"
               social_link name: :bluesky, href: "https://bsky.app/profile/tvonwolfe.com", rel: "me atproto"
-              social_link name: :atom, href: "/feed", data: { turbo: "false" }
+              social_link name: :atom, href: "/feed", data: {turbo: "false"}
             end
           end
           main do

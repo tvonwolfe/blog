@@ -117,12 +117,12 @@ describe PostLinkParser do
         let(:url) { Faker::Internet.url }
         let(:content) { "some text incredible stuff the end" }
         let(:post) { create(:post, content:) }
-        let!(:link) { create(:link, target_url: url, posts: [ post ]) }
+        let!(:link) { create(:link, target_url: url, posts: [post]) }
 
         it "destroys the association between the post and the link" do
           expect do
             post_link_parser.parse_links
-          end.to change { post.reload.links.to_a }.from([ link ]).to([])
+          end.to change { post.reload.links.to_a }.from([link]).to([])
         end
 
         context "when there are no other posts that include the link" do
@@ -135,7 +135,7 @@ describe PostLinkParser do
 
         context "when there are other posts that include the link" do
           before do
-            create(:post, links: [ link ])
+            create(:post, links: [link])
           end
 
           it "doesn't destroy the Link record" do
@@ -150,7 +150,7 @@ describe PostLinkParser do
         let(:url) { Faker::Internet.url }
         let(:content) { "\n#{url}\n" }
         let(:post) { create(:post, content:) }
-        let!(:link) { create(:link, target_url: url, posts: [ post ]) }
+        let!(:link) { create(:link, target_url: url, posts: [post]) }
 
         it "doesn't destroy or create any Links" do
           expect do

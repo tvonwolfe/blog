@@ -21,7 +21,7 @@ describe PostUpdater do
   end
 
   context "when params are invalid" do
-    let(:params) { { title: "a" * (Post::MAX_TITLE_LENGTH + 1) } }
+    let(:params) { {title: "a" * (Post::MAX_TITLE_LENGTH + 1)} }
 
     it "does not update the post" do
       expect do
@@ -37,8 +37,8 @@ describe PostUpdater do
   end
 
   context "when tags are included" do
-    let(:tags) { [ "tag-a", "tag-b" ] }
-    let(:params) { { tags: } }
+    let(:tags) { ["tag-a", "tag-b"] }
+    let(:params) { {tags:} }
 
     it "creates tag records and associations" do
       expect do
@@ -58,9 +58,9 @@ describe PostUpdater do
         expect do
           post_updater.update(params)
         end.to change { post.reload.updated_at }
-        .and change { post.tags.pluck(:value) }.from([]).to(tags)
-        .and change(Tag, :count).by(1)
-        .and change(PostTag, :count).by(2)
+          .and change { post.tags.pluck(:value) }.from([]).to(tags)
+          .and change(Tag, :count).by(1)
+          .and change(PostTag, :count).by(2)
       end
     end
 
@@ -68,9 +68,9 @@ describe PostUpdater do
       let!(:post) { create(:post, :tagged) }
       let(:post_tag) { post.post_tags.first }
       let(:old_tag) { post_tag.tag }
-      let(:old_tags) { [ post_tag.tag.value ] }
-      let(:new_tags) { [ "tag-1" ] }
-      let(:params) { { tags: new_tags } }
+      let(:old_tags) { [post_tag.tag.value] }
+      let(:new_tags) { ["tag-1"] }
+      let(:params) { {tags: new_tags} }
 
       it "destroys tag associations" do
         expect do
@@ -105,7 +105,7 @@ describe PostUpdater do
   end
 
   context "when `publish` param is present" do
-    let(:params) { { publish: } }
+    let(:params) { {publish:} }
 
     context "when param value is falsy" do
       let(:publish) { nil }
@@ -143,7 +143,7 @@ describe PostUpdater do
   end
 
   context "when `unpublish` param is present" do
-    let(:params) { { unpublish: } }
+    let(:params) { {unpublish:} }
 
     context "when param value is falsy" do
       let(:unpublish) { nil }

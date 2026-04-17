@@ -35,7 +35,7 @@ describe "Admin::Posts", type: :request do
   end
 
   describe "POST /admin/posts" do
-    let(:tags) { [ "tag-1", "tag-2" ] }
+    let(:tags) { ["tag-1", "tag-2"] }
     let(:params) do
       {
         post: {
@@ -165,7 +165,7 @@ describe "Admin::Posts", type: :request do
         get edit_admin_post_path(post)
 
         expect(view_class).to have_received(:new)
-        .with(post: having_attributes(class: Post, id: post.id))
+          .with(post: having_attributes(class: Post, id: post.id))
       end
 
       context "when the post is not found" do

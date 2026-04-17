@@ -44,7 +44,7 @@ module AdminSession
       authorization_cookie,
       Rails.application.secret_key_base,
       true,
-      { algorithm: "HS256" }
+      {algorithm: "HS256"}
     )
   rescue JWT::DecodeError => e
     Rails.logger.error(self.class.name) do
