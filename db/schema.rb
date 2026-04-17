@@ -44,7 +44,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_16_210853) do
 
   create_table "links", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.string "target_domain", null: false
+    t.string "target_domain"
     t.string "target_url", null: false
     t.datetime "updated_at", null: false
     t.index ["target_domain"], name: "index_links_on_target_domain"

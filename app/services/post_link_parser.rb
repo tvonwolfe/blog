@@ -17,10 +17,7 @@ class PostLinkParser
       post.links = existing_links
       post.save!
 
-      Rails.logger.info("existing_links: #{existing_links.pluck(:target_url).map(&:to_s)}")
       new_urls = urls - existing_links.map(&:target_url).map(&:to_s)
-
-      Rails.logger.info("urls: #{urls}, new_urls: #{new_urls}")
 
       new_urls.each do |url|
         post.links.create(target_url: url)

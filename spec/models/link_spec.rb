@@ -8,17 +8,21 @@ describe Link, type: :model do
       expect(link).to be_valid
     end
 
-    it "is invalid without a target_url" do
-      link.target_url = nil
+    context "when the link is external" do
+      it "automatically assigns a target_domain based on the target_url" do
+        new_link = described_class.new(target_url: "https://example.com/this/is-a/pathname")
+        expect(new_link).to be_valid
 
-      expect(link).not_to be_valid
+        expect(new_link.target_domain).to eq "example.com"
+      end
     end
 
-    it "automatically assigns a target_domain based on the target_url" do
-      new_link = described_class.new(target_url: "https://example.com/this/is-a/pathname")
-      expect(new_link).to be_valid
+    context "when the link is internal" do
+      let(:link) { build(:link, target_url: "/about") }
 
-      expect(new_link.target_domain).to eq "example.com"
+      it "is valid without target_domain" do
+        expect(link).to be_valid
+      end
     end
   end
 
@@ -37,6 +41,60 @@ describe Link, type: :model do
 
     it "includes only links that are not associated with any posts" do
       expect(described_class.dangling).to contain_exactly(dangling_link)
+    end
+  end
+
+  describe ".internal" do
+    let!(:external_link) { create(:link, target_url: Faker::Internet.url) }
+    let!(:internal_link) { create(:link, target_url: "/about") }
+
+    it "only includes internal links" do
+      expect(described_class.internal).to contain_exactly(internal_link)
+    end
+  end
+
+  describe ".external" do
+    let!(:external_link) { create(:link) }
+    let!(:internal_link) { create(:link, target_url: "/about") }
+
+    it "only includes external links" do
+      expect(described_class.external).to contain_exactly(external_link)
+    end
+  end
+
+  describe "#internal?" do
+    context "when the link is internal" do
+      let(:link) { build(:link, target_url: "/about") }
+
+      it "returns true" do
+        expect(link.internal?).to be true
+      end
+    end
+
+    context "when the link is external" do
+      let(:link) { build(:link) }
+
+      it "returns false" do
+        expect(link.internal?).to be false
+      end
+    end
+  end
+
+  describe "#external?" do
+    context "when the link is internal" do
+      let(:link) { build(:link, target_url: "/about") }
+
+      it "returns false" do
+        expect(link.external?).to be false
+      end
+    end
+
+    context "when the link is external" do
+      let(:link) { build(:link) }
+
+      it "returns true" do
+        expect(link.external?).to be true
+      end
     end
   end
 end

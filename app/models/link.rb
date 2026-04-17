@@ -11,9 +11,17 @@ class Link < ApplicationRecord
   before_validation :set_target_domain, on: :create
 
   validates :target_url, presence: true, uniqueness: true
-  validates :target_domain, presence: true
+  validates :target_domain, presence: true, if: :external?
 
   scope :dangling, -> { where.missing(:post_links) }
+  scope :internal, -> { where(target_domain: nil) }
+  scope :external, -> { internal.invert_where }
+
+  def external? = !internal?
+
+  def internal?
+    target_url.relative?
+  end
 
   private
 

@@ -2,7 +2,7 @@ class CreateLinks < ActiveRecord::Migration[8.1]
   def change
     create_table :links do |t|
       t.string :target_url, null: false
-      t.string :target_domain, null: false
+      t.string :target_domain
 
       t.timestamps
 
