@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :post do
     title { Faker::Lorem.sentence }
@@ -12,6 +14,12 @@ FactoryBot.define do
 
     trait :published do
       published_at { DateTime.current }
+    end
+
+    trait :with_link do
+      after(:build) do |post, evaluator|
+        post.links = build_list(:link, 1)
+      end
     end
   end
 end
