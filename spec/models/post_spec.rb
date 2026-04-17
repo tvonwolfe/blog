@@ -129,7 +129,7 @@ describe Post, type: :model do
 
     describe ".tagged_with" do
       let(:tag) { create(:tag, value: "a-tag") }
-      let(:post_with_tag) { create(:post, tags: [ tag ]) }
+      let(:post_with_tag) { create(:post, tags: [tag]) }
       let(:post_with_other_tag) { create(:post, :tagged) }
       let(:post_with_no_tags) { create(:post) }
 

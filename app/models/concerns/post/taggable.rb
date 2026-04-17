@@ -9,7 +9,7 @@ class Post
       scope :tagged, -> { where.associated(:post_tags).distinct }
       scope :untagged, -> { where.missing(:post_tags) }
 
-      scope :tagged_with, ->(tag_values) { tagged.joins(post_tags: :tag).where(tag: { value: Array(tag_values) }) }
+      scope :tagged_with, ->(tag_values) { tagged.joins(post_tags: :tag).where(tag: {value: Array(tag_values)}) }
 
       accepts_nested_attributes_for :post_tags
     end

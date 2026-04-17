@@ -26,7 +26,7 @@ module Components
             csrf_meta_tags
             csp_meta_tag
 
-            stylesheet_link_tag :app, data: { turbo_track: "reload" }
+            stylesheet_link_tag :app, data: {turbo_track: "reload"}
             stylesheet_link_tag :marksmith
             javascript_importmap_tags
           end

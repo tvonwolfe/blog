@@ -19,18 +19,19 @@ gem "stimulus-rails"
 gem "tailwindcss-rails"
 gem "thruster", require: false
 gem "turbo-rails"
-gem "tzinfo-data", platforms: %i[ windows jruby ]
+gem "tzinfo-data", platforms: %i[windows jruby]
 
 group :development, :test do
   gem "brakeman", require: false
   gem "capybara"
-  gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
+  gem "debug", platforms: %i[mri windows], require: "debug/prelude"
   gem "dotenv-rails"
   gem "factory_bot_rails"
   gem "faker"
   gem "nokogiri"
   gem "rspec-rails", "~> 8.0"
-  gem "rubocop-rails-omakase", require: false
+  gem "standard", ">= 1.35.1", require: false
+  gem "standard-rails", require: false
   gem "selenium-webdriver"
   gem "testy_cookie"
 end

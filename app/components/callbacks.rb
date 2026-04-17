@@ -8,7 +8,7 @@ module Components
 
     included do
       CALLBACK_TYPES.each do |callback_type|
-        class_attribute_name = "#{callback_type}_template_actions".to_sym
+        class_attribute_name = :"#{callback_type}_template_actions"
 
         class_attribute class_attribute_name, instance_predicate: false, default: []
 
@@ -22,7 +22,7 @@ module Components
           end
         RUBY
 
-        define_method "#{callback_type}_template".to_sym do |&block|
+        define_method :"#{callback_type}_template" do |&block|
           self.class.public_send(class_attribute_name).each do |action|
             case action
             when Proc

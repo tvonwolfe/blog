@@ -30,7 +30,7 @@ describe PostCreator do
 
     context "when params are invalid" do
       let(:params) do
-        attributes_for(:post, title: "a" * (Post::MAX_TITLE_LENGTH+1))
+        attributes_for(:post, title: "a" * (Post::MAX_TITLE_LENGTH + 1))
       end
 
       it "does not create a post" do
@@ -99,7 +99,7 @@ describe PostCreator do
       end
 
       context "when tags are included" do
-        let(:tags) { [ "tag-a", "tag-b" ] }
+        let(:tags) { ["tag-a", "tag-b"] }
         let(:params) { attributes_for(:post).merge(tags:) }
 
         it "creates post and tags" do
@@ -129,7 +129,7 @@ describe PostCreator do
         end
 
         context "when post params are invalid" do
-          let(:params) { { tags: } }
+          let(:params) { {tags:} }
 
           it "does not create any tags" do
             expect do
