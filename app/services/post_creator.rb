@@ -17,6 +17,8 @@ class PostCreator
       post.publish if publish?
     end
 
+    PostLinkParserJob.perform_later(post) if post.persisted?
+
     post
   end
 

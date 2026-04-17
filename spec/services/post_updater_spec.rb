@@ -14,6 +14,12 @@ describe PostUpdater do
       .and change { post.content }
   end
 
+  it "enqueues a PostLinkParserJob" do
+    post_updater.update(params)
+
+    expect(PostLinkParserJob).to have_been_enqueued.with(post)
+  end
+
   context "when params are invalid" do
     let(:params) { { title: "a" * (Post::MAX_TITLE_LENGTH + 1) } }
 
@@ -21,6 +27,12 @@ describe PostUpdater do
       expect do
         post_updater.update(params)
       end.not_to change { post.reload.updated_at }
+    end
+
+    it "does not enqueue a PostLinkParserJob" do
+      expect do
+        post_updater.update(params)
+      end.not_to have_enqueued_job(PostLinkParserJob)
     end
   end
 
