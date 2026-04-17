@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Link < ApplicationRecord
-  normalizes :target_url, with: ->(url) { url.strip.downcase }
+  normalizes :target_url, with: ->(url) { url.strip }
 
   serialize :target_url, coder: URLCoder
 
