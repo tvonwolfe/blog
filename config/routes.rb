@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -23,6 +25,10 @@ Rails.application.routes.draw do
 
   root "posts#index"
   get :feed, to: "posts#index", defaults: {format: :xml}
+
+  scope ".well-known" do
+    resources :links, only: :index, to: "links#index", defaults: {format: :json}
+  end
 
   # redirect all unrecognized paths to the root path.
   # match "*path" => "posts#index", via: %i[get post put patch delete], to: redirect("/")
