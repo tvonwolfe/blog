@@ -7,6 +7,7 @@ gem "bootsnap", require: false
 gem "commonmarker"
 gem "image_processing", "~> 1.2"
 gem "importmap-rails"
+gem "jbuilder"
 gem "jwt"
 gem "pagy", "~> 43.5.1"
 gem "pg", "~> 1.1"
