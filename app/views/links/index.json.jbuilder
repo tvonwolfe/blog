@@ -6,10 +6,11 @@ def target_url(link)
   end
 end
 
-json.array! @links.pluck(:target_domain).uniq do |domain|
+json.array! @link_domains.each do |link_domain|
+  domain = link_domain.target_domain
   json.domain domain || root_url
   domain_links = @links.select { |link| link.target_domain == domain }
-  json.count domain_links.count
+  json.count link_domain.domain_freq
 
   json.links do
     domain_links.each do |domain_link|
