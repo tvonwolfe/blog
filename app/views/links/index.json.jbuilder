@@ -8,7 +8,7 @@ end
 
 json.array! @link_domains.each do |link_domain|
   domain = link_domain.target_domain
-  json.domain domain || root_url
+  json.domain domain || URI.parse(root_url).host
   domain_links = @links.select { |link| link.target_domain == domain }
   json.count link_domain.domain_freq
 

@@ -27,7 +27,7 @@ describe "Links", type: :request do
           ]
         },
         {
-          domain: root_url,
+          domain: URI.parse(root_url).host,
           count: 1,
           links: [
             {
