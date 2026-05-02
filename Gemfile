@@ -45,4 +45,4 @@ group :development do
 end
 
 gem "aws-sdk-s3", require: false
-gem "marksmith", "~> 0.4.8"
+gem "marksmith", "~> 0.5.1"
