@@ -5,7 +5,7 @@ ruby "4.0.2"
 gem "bcrypt", "~> 3.1.21"
 gem "bootsnap", require: false
 gem "commonmarker"
-gem "image_processing", "~> 1.2"
+gem "image_processing", "~> 2.0"
 gem "importmap-rails"
 gem "jbuilder"
 gem "jwt"
